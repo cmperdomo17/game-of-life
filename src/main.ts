@@ -6,9 +6,11 @@ window.onload = () => {
   `
     <div class="container">
       <h1>Game of Life</h1>
-      <button onclick="startGame()">Start</button>
-      <button onclick="stop()">Stop</button>
-      <button onclick="restart()">Restart</button>
+      <section class="section-buttons">
+        <button onclick="startGame()">Start</button>
+        <button onclick="stop()">Stop</button>
+        <button onclick="restart()">Restart</button>
+      </section>
       <canvas id="screen"></canvas>
     </div>
   `;
