@@ -120,7 +120,7 @@ export function start() {
     canvas.width = canvasX;
     canvas.height = canvasY;
 
-    // Calcular los tiles
+    // Calcular los tiles: cuadricula
     tileX = Math.floor(canvasX/rows);
     tileY = Math.floor(canvasY/columns);
 
