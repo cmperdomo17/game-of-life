@@ -6,7 +6,7 @@ let firstRun: boolean=true;
 
 let canvas: HTMLCanvasElement | null;
 let context: CanvasRenderingContext2D | null;
-let fps = 15;
+let fps = 30;
 
 let canvasX = 400;
 let canvasY = 400;
@@ -28,7 +28,7 @@ function createArray2D(r:number, c:number) {
     return obj;
 };
 
-export function start() {
+export function initialize(){
     canvas = document.getElementById('screen') as HTMLCanvasElement;
     context = canvas.getContext('2d');
 
@@ -40,11 +40,14 @@ export function start() {
     tileX = Math.floor(canvasX/util.props.rows);
     tileY = Math.floor(canvasY/util.props.columns);
 
-    // Crear el tablero
-    board = Board.getInstance(createArray2D(util.props.rows, util.props.columns),context);
+     // Crear el tablero
+     board = Board.getInstance(createArray2D(util.props.rows, util.props.columns),context);
     
-    // Crear el cuidador de mementos
-    careTaker = new CareTaker(board);
+     // Crear el cuidador de mementos
+     careTaker = new CareTaker(board);
+}
+
+export function start() {
 
     // Inicializar el tablero
     if(firstRun){
@@ -72,6 +75,7 @@ function deleteCanvas() {
 
 export function stop(){
     clearInterval(intervalID);
+    board.onlydrawBoard(tileX,tileY);
 }
 
 export function restart(){
@@ -91,7 +95,7 @@ export function clean(){
 export function load(){
     //Por ahora solo se carga el ultimo estado guardado
     careTaker.getMementos();
-    //careTaker.undo();
+    careTaker.undo();
     board.drawBoard(tileX,tileY);
 }
 

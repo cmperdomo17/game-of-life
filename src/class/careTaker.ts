@@ -14,7 +14,7 @@ export class CareTaker{
     }
 
     saveBackup(): void{
-        this.mementos.push({...this.boardOriginator.save(this.count)});
+        this.mementos.push(this.boardOriginator.save(this.count));
         this.count++;
     }
 

@@ -7,7 +7,7 @@ export class BoardMemento implements Memento{
     private stateNumber: number;
 
     constructor(boardState: Cell[][], stateNumber: number){
-        this.boardState=boardState.slice();
+        this.boardState=boardState;
         this.stateNumber=stateNumber;
     }
 

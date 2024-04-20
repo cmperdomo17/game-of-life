@@ -2,6 +2,7 @@ import { Memento } from "../interfaces/memento";
 import util from "../util";
 import { BoardMemento } from "./boardMemento";
 import { Cell } from "./cell";
+import _ from 'lodash';
 
 export class Board{
 
@@ -81,6 +82,15 @@ export class Board{
         }
     }
 
+    onlydrawBoard(tileX: number, tileY: number) {
+        // Dibuja los agentes
+        for (let y=0; y<util.props.rows; y++) {
+            for (let x=0; x<util.props.columns; x++) {
+                this.board[y][x].draw(this.context,tileX,tileY);
+            }
+        }
+    }
+
     cleanBoard(){
         for (let y=0; y<util.props.rows; y++) {
             for (let x=0; x<util.props.columns; x++) {
@@ -90,7 +100,15 @@ export class Board{
     }
 
     save(stateNumber: number): Memento{
-        return new BoardMemento(this.board.slice(),stateNumber);
+        let copyBoard: Cell[][]=[];
+        for (let y=0; y<util.props.rows; y++) {
+            copyBoard[y] = [];
+            for (let x=0; x<util.props.columns; x++) {
+                copyBoard[y][x]=_.clone(this.board[y][x]);
+            }
+        }
+
+        return new BoardMemento(copyBoard,stateNumber);
     }
 
     restore(boardMemento: Memento){
