@@ -22,6 +22,7 @@ window.onload = () => {
         <button id="Save">${saveIcon}</button>
         <button id="Load">${loadIcon}</button>
         <button id="Clean">${cleanIcon}</button>
+        <input type="range" min="1" max="100" value="50" id="speedControl">
       </section>
       <canvas id="screen"></canvas>
     </div>
@@ -32,7 +33,6 @@ window.onload = () => {
   document.getElementById('Save')?.addEventListener('click', Save);
   document.getElementById('Load')?.addEventListener('click', Load);
   document.getElementById('Clean')?.addEventListener('click', Clean);
-  
 };
 
 function toggleButton(): void {

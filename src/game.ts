@@ -41,10 +41,10 @@ export function initialize(){
     tileY = Math.floor(canvasY/util.props.columns);
 
      // Crear el tablero
-     board = Board.getInstance(createArray2D(util.props.rows, util.props.columns),context);
+    board = Board.getInstance(createArray2D(util.props.rows, util.props.columns),context);
     
      // Crear el cuidador de mementos
-     careTaker = new CareTaker(board);
+    careTaker = new CareTaker(board);
 }
 
 export function start() {
@@ -61,8 +61,21 @@ export function start() {
     // Dibujar el tablero
     board.drawBoard(tileX,tileY);
     
+    const speedControl = document.getElementById('speedControl') as HTMLInputElement;
+    let interval = 1000;
+    if (speedControl) {
+        fps = parseInt(speedControl.value);
+        interval = 1000 / fps;
+        speedControl.addEventListener('change', () => { // Cambia 'input' por 'change'
+            fps = parseInt(speedControl.value);
+            interval = 1000 / fps;
+            clearInterval(intervalID);
+            intervalID=setInterval(function(){main(board,tileX,tileY);}, interval);
+        });
+    }
+    
     // Ejecutar el bucle principal
-    intervalID=setInterval(function(){main(board,tileX,tileY);}, 5000/fps);
+    intervalID=setInterval(function(){main(board,tileX,tileY);}, interval/fps);
 }
 
 function deleteCanvas() {
