@@ -41,7 +41,7 @@ export function start() {
     tileY = Math.floor(canvasY/util.props.columns);
 
     // Crear el tablero
-    board = Board.getInstance(createArray2D(util.props.rows,util.props.columns),context);
+    board = Board.getInstance(createArray2D(util.props.rows, util.props.columns),context);
     
     // Crear el cuidador de mementos
     careTaker = new CareTaker(board);
@@ -54,9 +54,12 @@ export function start() {
 
     // Guardar el estado actual del tablero
     careTaker.saveBackup();
+
+    // Dibujar el tablero
+    board.drawBoard(tileX,tileY);
     
     // Ejecutar el bucle principal
-    intervalID=setInterval(function(){main(board,tileX,tileY);}, 1000/fps);
+    intervalID=setInterval(function(){main(board,tileX,tileY);}, 5000/fps);
 }
 
 function deleteCanvas() {
@@ -69,7 +72,6 @@ function deleteCanvas() {
 
 export function stop(){
     clearInterval(intervalID);
-    board.drawBoard(tileX,tileY);
 }
 
 export function restart(){

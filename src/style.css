@@ -30,7 +30,7 @@ canvas {
 }
 
 button {
-  padding: 6px 12px;
+  padding: 3px 6px 0 6px;
   border: none;
   border-radius: 12px;
   background-color: #fff;
@@ -39,6 +39,11 @@ button {
   font-weight: 600;
   cursor: pointer;
   border: 2px solid #2b2b2b;
+}
+
+#StartStop {
+  margin: 0;
+  padding: 3px 6px 0 6px;
 }
 
 button:hover {
