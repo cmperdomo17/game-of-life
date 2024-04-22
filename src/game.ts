@@ -98,11 +98,25 @@ export function stop(){
     board.onlydrawBoard(tileX,tileY);
 }
 
+export function step(){
+    // Inicializar el tablero
+    if(firstRun){
+        board.initializeBoard();
+        firstRun=false;
+    }
+    // Guardar el estado actual del tablero
+    save();
+
+    // Dibujar el tablero
+    board.drawBoard(tileX,tileY);
+}
+
 export function restart(){
     firstRun=true;
     start();
 }
 
+//Si se usa esto?
 export function save(){
     careTaker.saveBackup();
 }
