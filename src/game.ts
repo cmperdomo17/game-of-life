@@ -60,29 +60,16 @@ export function start() {
 
     // Dibujar el tablero
     board.drawBoard(tileX,tileY);
-    
-    //Esto es mejor hacerlo como una funcion (speed) de modo que desde el main se le manden los fps
-    const speedControl = document.getElementById('speedControl') as HTMLInputElement;
-    let interval = 1000;
-    if (speedControl) {
-        fps = parseInt(speedControl.value);
-        interval = 1000 / fps;
-        speedControl.addEventListener('change', () => { // Cambia 'input' por 'change'
-            fps = parseInt(speedControl.value);
-            interval = 1000 / fps;
-            clearInterval(intervalID); //Esto le hace stop
-            //intervalID=setInterval(function(){main(board,tileX,tileY);}, interval);
-        });
-    }
-    
-    // Mejor crear una variable de isRunning aqui en el game y ps ahi solo habria que recibir el interval
-    // y preguntar si estaba ejecutandose tons q haga el clearinterval y el setinterval 
-    // sino que haga el crearInterval nomas
-    // Como el isrunning solo lo usa la funcion (speed) no seria necesario crear el isrunning como variable global
-    // sino que esa misma funcion lo reciba
-    // dos puntos ube
+
     // Ejecutar el bucle principal
-    intervalID=setInterval(function(){main(board,tileX,tileY);}, interval/fps);
+    let interval: number = 1000;
+    let isRunning: boolean = false;
+    speed(interval, isRunning);
+    // Esto se puede quitar xd
+    let velocity = interval/fps;
+    console.log("velocidad inicial"+ velocity);
+    // Solo era para ver como varia la velocidad
+    intervalID = setInterval(function(){main(board,tileX,tileY);}, velocity);
 }
 
 function deleteCanvas() {
@@ -131,6 +118,19 @@ export function load(){
     careTaker.getMementos();
     careTaker.undo();
     board.drawBoard(tileX,tileY);
+}
+
+export function speed(interval: number, isRunning: boolean) {
+    if (isRunning) {
+        clearInterval(intervalID);
+        intervalID = setInterval(function(){main(board,tileX,tileY);}, interval/fps);
+        console.log("fps " + fps);
+        console.log("interval " + interval);
+        let velocity = interval/fps;
+        console.log("velocidad actual"+ velocity);    
+    } else {
+        clearInterval(intervalID);
+    }
 }
 
 function main(board: Board, tileX: number, tileY:number) {
