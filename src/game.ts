@@ -62,7 +62,7 @@ export function start() {
     board.drawBoard(tileX,tileY);
 
     // Ejecutar el bucle principal
-    let interval: number = 1000;
+    let interval: number = 5000;
     let isRunning: boolean = false;
     speed(interval, isRunning);
     // Esto se puede quitar xd
