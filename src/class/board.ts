@@ -112,6 +112,12 @@ export class Board{
     }
 
     restore(boardMemento: Memento){
-        this.board=boardMemento.getState();
+        for (let y=0; y<util.props.rows; y++) {
+            for (let x=0; x<util.props.columns; x++) {
+                this.board[y][x].status=_.clone(boardMemento.getState()[y][x].status);
+            }
+        }
+        console.log("Copia restaurada");
+        console.log(this.board);
     }
 }

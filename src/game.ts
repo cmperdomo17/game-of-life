@@ -16,6 +16,7 @@ let board: Board; // Tablero de Celulas
 let tileX: number = 0;
 let tileY: number = 0;
 
+let interval: number = 5000;
 let intervalID: number=0;
 
 let careTaker: CareTaker;
@@ -62,7 +63,6 @@ export function start() {
     board.drawBoard(tileX,tileY);
 
     // Ejecutar el bucle principal
-    let interval: number = 5000;
     let isRunning: boolean = false;
     speed(interval, isRunning);
     // Esto se puede quitar xd
@@ -120,9 +120,10 @@ export function load(){
     board.drawBoard(tileX,tileY);
 }
 
-export function speed(interval: number, isRunning: boolean) {
+export function speed(newInterval: number, isRunning: boolean) {
     if (isRunning) {
         clearInterval(intervalID);
+        interval=newInterval;
         intervalID = setInterval(function(){main(board,tileX,tileY);}, interval/fps);
         console.log("fps " + fps);
         console.log("interval " + interval);
