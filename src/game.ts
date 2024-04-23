@@ -67,7 +67,7 @@ export function start() {
     speed(interval, isRunning);
     // Esto se puede quitar xd
     let velocity = interval/fps;
-    console.log("velocidad inicial"+ velocity);
+    console.log("velocidad inicial: "+ velocity);
     // Solo era para ver como varia la velocidad
     intervalID = setInterval(function(){main(board,tileX,tileY);}, velocity);
 }
@@ -125,10 +125,10 @@ export function speed(newInterval: number, isRunning: boolean) {
         clearInterval(intervalID);
         interval=newInterval;
         intervalID = setInterval(function(){main(board,tileX,tileY);}, interval/fps);
-        console.log("fps " + fps);
-        console.log("interval " + interval);
+        console.log("fps: " + fps);
+        console.log("interval: " + interval);
         let velocity = interval/fps;
-        console.log("velocidad actual"+ velocity);    
+        console.log("velocidad actual: "+ velocity);    
     } else {
         clearInterval(intervalID);
     }

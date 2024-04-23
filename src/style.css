@@ -14,11 +14,21 @@ body {
   align-items: center;
   flex-direction: column;
   height: 100vh;
+  width: 100%;
+  background-color: #111111;
+  background-image: linear-gradient(
+    32deg,
+    rgba(8, 8, 8, 0.74) 30px,
+    transparent
+  );
+  background-size: 60px 60px;
+  background-position: -5px -5px;
 }
 
 canvas {
   display: block;
   border: 2px solid #fff;
+  box-shadow: 0 0 30px 20px #000;
   border-radius: 5px;
 }
 
@@ -74,9 +84,61 @@ button:hover {
   background-color: #2b2b2b;
   color: #fff;
   border: 2px solid #fff;
+  border-radius: 20px;
 }
 
 .speed-buttons-section button:hover {
   background-color: #fff;
   color: #000;
+}
+
+.title {
+  font-size: 2rem;
+  color: #fff;
+  background: linear-gradient(to right, #9f9f9f 0, #fff 10%, #868686 20%);
+  background-position: 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 5s infinite linear;
+  animation-fill-mode: forwards;
+  -webkit-text-size-adjust: none;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+@-moz-keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 180px;
+  }
+}
+@-webkit-keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  100% {
+    background-position: 180px;
+  }
+}
+@-o-keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  100% {
+    background-position: 180px;
+  }
+}
+@keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  100% {
+    background-position: 180px;
+  }
 }

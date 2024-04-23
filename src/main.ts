@@ -19,7 +19,9 @@ window.onload = () => {
   document.querySelector<HTMLDivElement>('#app')!.innerHTML = 
   `
     <div class="container">
-      <h1>Game of Life</h1>
+      <h1 class="title">
+          Game of Life
+      </h1>
       <section class="section-buttons">
         <button id="StartStop">${startIcon}</button>
         <button id="Step">${stepIcon}</button>
